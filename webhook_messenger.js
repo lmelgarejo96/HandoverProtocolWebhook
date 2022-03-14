@@ -67,7 +67,7 @@ const handlePostRequest = (req, res) => {
 
     res.status(200).send('EVENT_RECEIVED')
   } else {
-    res.sendStatus(404)
+    res.status(404)
   }
 }
 
@@ -81,7 +81,7 @@ const handleGetRequest = (req, res) => {
       console.log('WEBHOOK_VERIFIED')
       res.status(200).send(challenge)
     } else {
-      res.sendStatus(403)
+      res.status(403)
     }
   }
 }
