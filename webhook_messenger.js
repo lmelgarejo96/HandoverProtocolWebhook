@@ -72,17 +72,22 @@ const handlePostRequest = (req, res) => {
 }
 
 const handleGetRequest = (req, res) => {
-  const mode = req.query['hub.mode']
-  const token = req.query['hub.verify_token']
-  const challenge = req.query['hub.challenge']
+  try {
+    console.log('entró a solicitud get')
+    const mode = req.query['hub.mode']
+    const token = req.query['hub.verify_token']
+    const challenge = req.query['hub.challenge']
 
-  if (mode && token) {
-    if (mode === 'subscribe' && token === VERIFY_TOKEN) {
-      console.log('WEBHOOK_VERIFIED')
-      res.status(200).send(challenge)
-    } else {
-      res.status(403)
+    if (mode && token) {
+      if (mode === 'subscribe' && token === VERIFY_TOKEN) {
+        console.log('WEBHOOK_VERIFIED')
+        res.status(200).send(challenge)
+      } else {
+        res.status(403)
+      }
     }
+  } catch (error) {
+    console.log('error en get', error)
   }
 }
 
