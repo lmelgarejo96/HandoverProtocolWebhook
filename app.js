@@ -15,7 +15,7 @@ server.get('/webhook_messenger', Messenger.handleGetRequest)
 
 // Webhook dialogflow
 server.post('/webhook_dialogflow', (req, res) => {
-  console.log('DIALOGFLOW REQUEST', req.body, req.body.queryResult.originalDetectIntentRequest)
+  console.log('DIALOGFLOW REQUEST', req.body, req.body.originalDetectIntentRequest)
   res.end()
 })
 
