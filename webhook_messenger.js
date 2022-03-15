@@ -20,6 +20,11 @@ const handlePostRequest = (req, res) => {
 
       const isHandoverProtocol = webhookEv.request_thread_control || webhookEv.pass_thread_control || webhookEv.take_thread_control
 
+      console.log({
+        url: DIALOGFLOW_WEBHOOK_MESSENGER,
+        isHandoverProtocol,
+        webhookEv
+      })
       if (isHandoverProtocol) {
         const fbReqBody = {
           recipient: webhookEv.sender,
@@ -57,10 +62,6 @@ const handlePostRequest = (req, res) => {
             })
         }
       } else {
-        console.log({
-          url: DIALOGFLOW_WEBHOOK_MESSENGER,
-          body
-        })
         axios.post(`${DIALOGFLOW_WEBHOOK_MESSENGER}`, body)
           .then(function (response) { })
           .catch(function (error) {

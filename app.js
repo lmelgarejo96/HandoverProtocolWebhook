@@ -3,9 +3,10 @@
 // Imports dependencies and set up http server
 const express = require('express')
 const server = express()
+const bodyParser = require('body-parser')
 const Messenger = require('./webhook_messenger')
 
-server.use(express.json())
+server.use(bodyParser.json())
 
 // Post and Get messenger webhook
 server.post('/webhook_messenger', Messenger.handlePostRequest)
