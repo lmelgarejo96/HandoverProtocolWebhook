@@ -57,6 +57,10 @@ const handlePostRequest = (req, res) => {
             })
         }
       } else {
+        console.log({
+          url: DIALOGFLOW_WEBHOOK_MESSENGER,
+          body
+        })
         axios.post(`${DIALOGFLOW_WEBHOOK_MESSENGER}`, body)
           .then(function (response) { })
           .catch(function (error) {
