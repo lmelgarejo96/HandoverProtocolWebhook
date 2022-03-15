@@ -23,6 +23,7 @@ const handlePostRequest = (req, res) => {
       console.log({
         url: DIALOGFLOW_WEBHOOK_MESSENGER,
         isHandoverProtocol,
+        body,
         webhookEv
       })
       if (isHandoverProtocol) {
