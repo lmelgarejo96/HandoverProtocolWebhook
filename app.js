@@ -4,22 +4,17 @@
 const express = require('express')
 const server = express()
 const bodyParser = require('body-parser')
-const Messenger = require('./webhook_messenger')
+const Messenger = require('./messenger/webhook')
+const { handleDialogFlowWebhook } = require('./dialogflow')
 
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }))
 
 // Post and Get messenger webhook
-server.post('/webhook_messenger', Messenger.handlePostRequest)
-server.get('/webhook_messenger', Messenger.handleGetRequest)
+server.post('/webhook_messenger', Messenger.handleWebhookPost)
+server.get('/webhook_messenger', Messenger.handleVerifyWebhook)
 
 // Webhook dialogflow
-server.post('/webhook_dialogflow', (req, res) => {
-  console.log('DIALOGFLOW REQUEST', req.body)
-  console.log('SENDER', req.body.originalDetectIntentRequest.payload.data.sender)
-  console.log('RECIPIENT', req.body.originalDetectIntentRequest.payload.data.recipient)
-  console.log('MESSAGE', req.body.originalDetectIntentRequest.payload.data.message)
-  res.end()
-})
+server.post('/webhook_dialogflow', handleDialogFlowWebhook)
 
 server.listen(process.env.PORT || 3000, () => console.log('Webhook Works!!'))

@@ -17,7 +17,6 @@ const handlePostRequest = (req, res) => {
     // Iterates over each entry - there may be multiple if batched
     body.entry.forEach(function (entry) {
       const webhookEv = entry.messaging[0]
-
       const isHandoverProtocol = webhookEv.request_thread_control || webhookEv.pass_thread_control || webhookEv.take_thread_control
 
       console.log({
