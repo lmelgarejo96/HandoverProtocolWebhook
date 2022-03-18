@@ -2,7 +2,7 @@ const request = require('request')
 const uuid = require('uuid')
 const axios = require('axios')
 // files
-const config = require('../config')
+const config = require('../../config')
 const { takeThreadControl } = require('./handover')
 // const dialogflow = require('../dialogflow')
 // const { structProtoToJson } = require('./helpers/struct_functions')
