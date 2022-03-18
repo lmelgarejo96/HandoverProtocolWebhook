@@ -1,6 +1,10 @@
 const axios = require('axios')
 const { FACEBOOK_ACCESS_TOKEN } = require('../../config')
 
+async function requestThreadControl () {
+  // as
+}
+
 async function passThreadControlToAppId (sender, appId) {
   // Pass thread control to appId
   const fbReqBody = {
@@ -29,6 +33,7 @@ async function takeThreadControl (sender) {
 }
 
 module.exports = {
+  requestThreadControl,
   passThreadControlToAppId,
   takeThreadControl
 }
